@@ -31,11 +31,11 @@ export const ko: Dictionary = {
     badge: "FINI SPORTS",
     headline1: "운동은 거창하지",
     headline2: "않아도 됩니다",
-    sub1: "요가매트 하나, 밴드 하나로 시작하는 나만의 건강 루틴.",
+    sub1: "마사지볼, 미니 폼롤러로 시작하는 나만의 건강 루틴.",
     sub2: "휘니스포츠가 첫 걸음부터 함께합니다.",
     cta1: "지금 시작하기",
     cta2: "베스트 상품 보기",
-    categories: ["YOGA MATS", "RESISTANCE BANDS", "FOAM ROLLERS", "DUMBBELLS"],
+    categories: ["MASSAGE BALL", "MINI FOAM ROLLER", "SPARK MAT", "BAROSPINE"],
   },
 
   painPoints: {

@@ -31,11 +31,11 @@ export const en: Dictionary = {
     badge: "FINI SPORTS",
     headline1: "Exercise doesn't have to be",
     headline2: "complicated",
-    sub1: "Start your own wellness routine with just a yoga mat or a resistance band.",
+    sub1: "Start your own wellness routine with a massage ball or mini foam roller.",
     sub2: "FINI Sports is with you from the very first step.",
     cta1: "Get Started",
     cta2: "View Best Sellers",
-    categories: ["YOGA MATS", "RESISTANCE BANDS", "FOAM ROLLERS", "DUMBBELLS"],
+    categories: ["MASSAGE BALL", "MINI FOAM ROLLER", "SPARK MAT", "BAROSPINE"],
   },
 
   painPoints: {
