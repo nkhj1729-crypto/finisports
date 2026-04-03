@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useLang } from "@/i18n";
 
 interface Exercise {
   title: string;
@@ -15,6 +16,7 @@ interface Props {
   category: string;
   categoryKey: string;
   subtitle: string;
+  title: string;
   description: string;
   exercises: Exercise[];
 }
@@ -37,9 +39,11 @@ export default function GuidePageTemplate({
   category,
   categoryKey,
   subtitle,
+  title,
   description,
   exercises,
 }: Props) {
+  const { t } = useLang();
   const [videos, setVideos] = useState<Video[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -62,7 +66,7 @@ export default function GuidePageTemplate({
               {subtitle}
             </p>
             <h1 className="text-4xl md:text-5xl font-extrabold mb-6">
-              {category} 운동 가이드
+              {title}
             </h1>
             <p className="text-gray-500 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
               {description}
@@ -74,7 +78,7 @@ export default function GuidePageTemplate({
         <section className="py-16 md:py-24 bg-gray-50">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
             <h2 className="text-2xl md:text-3xl font-extrabold text-center mb-14">
-              <span className="text-primary">{category}</span> 스트레칭 가이드
+              <span className="text-primary">{category}</span> {t.guideTemplate.stretchTitle}
             </h2>
             <div className="grid md:grid-cols-3 gap-6 md:gap-8">
               {exercises.map((ex, i) => (
@@ -99,11 +103,11 @@ export default function GuidePageTemplate({
         <section className="py-16 md:py-24 bg-white">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
             <h2 className="text-2xl md:text-3xl font-extrabold text-center mb-14">
-              동영상 가이드
+              {t.guideTemplate.videoTitle}
             </h2>
 
             {loading ? (
-              <div className="text-center text-gray-400 py-12">로딩 중...</div>
+              <div className="text-center text-gray-400 py-12">...</div>
             ) : videos.length > 0 ? (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {videos.map((v) => {
@@ -126,7 +130,7 @@ export default function GuidePageTemplate({
                             <svg className="w-12 h-12 text-gray-300 mx-auto mb-2" fill="currentColor" viewBox="0 0 24 24">
                               <path d="M8 5v14l11-7z" />
                             </svg>
-                            <p className="text-xs text-gray-400">영상 준비 중</p>
+                            <p className="text-xs text-gray-400">{t.guideTemplate.videoSoon}</p>
                           </div>
                         </div>
                       )}
@@ -149,7 +153,7 @@ export default function GuidePageTemplate({
                           </svg>
                         </div>
                       </div>
-                      <p className="mt-2 text-xs text-gray-400">영상 준비 중</p>
+                      <p className="mt-2 text-xs text-gray-400">{t.guideTemplate.videoSoon}</p>
                     </div>
                   ))}
                 </div>
@@ -157,7 +161,7 @@ export default function GuidePageTemplate({
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                   </svg>
-                  동영상 가이드가 곧 업데이트됩니다
+                  {t.guideTemplate.videoPlaceholder}
                 </div>
               </div>
             )}

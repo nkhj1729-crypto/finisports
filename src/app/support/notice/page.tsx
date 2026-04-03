@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useLang } from "@/i18n";
 
 interface Notice {
   id: string;
@@ -43,6 +44,7 @@ const CATEGORY_COLORS: Record<string, string> = {
 };
 
 export default function NoticePage() {
+  const { t } = useLang();
   const [notices, setNotices] = useState<Notice[]>(FALLBACK_NOTICES);
 
   useEffect(() => {
@@ -61,13 +63,13 @@ export default function NoticePage() {
         <section className="py-16 md:py-24 bg-white text-center">
           <div className="max-w-4xl mx-auto px-4">
             <p className="text-sm font-semibold text-primary tracking-widest mb-3 uppercase">
-              Notice
+              {t.noticePage.badge}
             </p>
             <h1 className="text-4xl md:text-5xl font-extrabold mb-6">
-              공지사항
+              {t.noticePage.title}
             </h1>
             <p className="text-gray-500 text-base md:text-lg">
-              휘니스포츠의 새로운 소식과 공지사항을 안내합니다.
+              {t.noticePage.desc}
             </p>
           </div>
         </section>

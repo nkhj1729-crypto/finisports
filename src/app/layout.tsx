@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { LangProvider } from "@/i18n";
 
 export const metadata: Metadata = {
   title: "휘니스포츠 | 건강과 즐거움의 파트너",
@@ -22,7 +23,9 @@ export default function RootLayout({
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
         />
       </head>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <LangProvider>{children}</LangProvider>
+      </body>
     </html>
   );
 }

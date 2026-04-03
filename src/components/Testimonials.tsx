@@ -1,31 +1,19 @@
-const REVIEWS = [
-  {
-    text: "요가매트 미끄러짐 때문에 3개째 샀는데, 여기서 산 건 진짜 안 미끄러져요.",
-    author: "요가 2년차 고객",
-    tag: "요가매트",
-  },
-  {
-    text: "거북목 교정 폼롤러 쓰고 나서 목 통증이 확실히 줄었습니다.",
-    author: "재활 목적 고객",
-    tag: "체형교정",
-  },
-  {
-    text: "PT 스튜디오 오픈하면서 소도구 전부 여기서 맞췄어요. 대응도 빠르고 좋습니다.",
-    author: "PT 트레이너 고객",
-    tag: "PT용품",
-  },
-];
+"use client";
+
+import { useLang } from "@/i18n";
 
 export default function Testimonials() {
+  const { t } = useLang();
+
   return (
     <section className="py-24 md:py-32 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-14">
-          실제 고객들의 <span className="text-primary">이야기</span>
+          {t.testimonials.title} <span className="text-primary">{t.testimonials.titleHighlight}</span>
         </h2>
 
         <div className="grid md:grid-cols-3 gap-6 md:gap-8">
-          {REVIEWS.map((r, i) => (
+          {t.testimonials.reviews.map((r, i) => (
             <div
               key={i}
               className="bg-gray-50 rounded-2xl p-7 md:p-8 border border-gray-100 hover:border-primary/20 hover:shadow-md transition-all"

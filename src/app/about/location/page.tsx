@@ -1,7 +1,12 @@
+"use client";
+
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useLang } from "@/i18n";
 
 export default function LocationPage() {
+  const { t } = useLang();
+
   return (
     <>
       <Header />
@@ -10,13 +15,13 @@ export default function LocationPage() {
         <section className="py-16 md:py-24 bg-white text-center">
           <div className="max-w-4xl mx-auto px-4">
             <p className="text-sm font-semibold text-primary tracking-widest mb-3 uppercase">
-              Location
+              {t.aboutLocation.badge}
             </p>
             <h1 className="text-4xl md:text-5xl font-extrabold mb-6">
-              오시는 길
+              {t.aboutLocation.title}
             </h1>
             <p className="text-gray-500 text-base md:text-lg">
-              주식회사 휘니 본사 위치를 안내합니다.
+              {t.aboutLocation.subtitle}
             </p>
           </div>
         </section>
@@ -41,7 +46,7 @@ export default function LocationPage() {
             {/* Address Details */}
             <div className="grid md:grid-cols-2 gap-8">
               <div className="bg-white rounded-2xl p-6 md:p-8 border border-gray-100">
-                <h3 className="font-bold text-lg mb-6">본사 주소</h3>
+                <h3 className="font-bold text-lg mb-6">{t.aboutLocation.addressTitle}</h3>
                 <div className="space-y-4">
                   <div className="flex gap-4">
                     <div className="shrink-0 w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
@@ -51,8 +56,8 @@ export default function LocationPage() {
                       </svg>
                     </div>
                     <div>
-                      <p className="text-sm text-gray-400 mb-0.5">도로명 주소</p>
-                      <p className="font-semibold text-sm">경기도 양주시 외미로 24</p>
+                      <p className="text-sm text-gray-400 mb-0.5">{t.aboutLocation.roadAddrLabel}</p>
+                      <p className="font-semibold text-sm">{t.aboutLocation.roadAddr}</p>
                     </div>
                   </div>
                   <div className="flex gap-4">
@@ -62,8 +67,8 @@ export default function LocationPage() {
                       </svg>
                     </div>
                     <div>
-                      <p className="text-sm text-gray-400 mb-0.5">지번 주소</p>
-                      <p className="font-semibold text-sm">경기도 양주시 남방동 208-1</p>
+                      <p className="text-sm text-gray-400 mb-0.5">{t.aboutLocation.lotAddrLabel}</p>
+                      <p className="font-semibold text-sm">{t.aboutLocation.lotAddr}</p>
                     </div>
                   </div>
                   <div className="flex gap-4">
@@ -73,7 +78,7 @@ export default function LocationPage() {
                       </svg>
                     </div>
                     <div>
-                      <p className="text-sm text-gray-400 mb-0.5">우편번호</p>
+                      <p className="text-sm text-gray-400 mb-0.5">{t.aboutLocation.zipLabel}</p>
                       <p className="font-semibold text-sm">11469</p>
                     </div>
                   </div>
@@ -81,7 +86,7 @@ export default function LocationPage() {
               </div>
 
               <div className="bg-white rounded-2xl p-6 md:p-8 border border-gray-100">
-                <h3 className="font-bold text-lg mb-6">연락처</h3>
+                <h3 className="font-bold text-lg mb-6">{t.aboutLocation.contactTitle}</h3>
                 <div className="space-y-4">
                   <div className="flex gap-4">
                     <div className="shrink-0 w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
@@ -90,7 +95,7 @@ export default function LocationPage() {
                       </svg>
                     </div>
                     <div>
-                      <p className="text-sm text-gray-400 mb-0.5">대표전화</p>
+                      <p className="text-sm text-gray-400 mb-0.5">{t.aboutLocation.phoneLabel}</p>
                       <p className="font-bold text-lg text-primary">1899-0063</p>
                     </div>
                   </div>
@@ -101,7 +106,7 @@ export default function LocationPage() {
                       </svg>
                     </div>
                     <div>
-                      <p className="text-sm text-gray-400 mb-0.5">이메일</p>
+                      <p className="text-sm text-gray-400 mb-0.5">{t.aboutLocation.emailLabel}</p>
                       <p className="font-semibold text-sm">admin@finisports.com</p>
                     </div>
                   </div>
@@ -112,9 +117,9 @@ export default function LocationPage() {
                       </svg>
                     </div>
                     <div>
-                      <p className="text-sm text-gray-400 mb-0.5">운영시간</p>
-                      <p className="font-semibold text-sm">평일 09:00 ~ 18:00</p>
-                      <p className="text-xs text-gray-400">점심 12:00~13:00 / 주말, 공휴일 휴무</p>
+                      <p className="text-sm text-gray-400 mb-0.5">{t.aboutLocation.hoursLabel}</p>
+                      <p className="font-semibold text-sm">{t.aboutLocation.hours}</p>
+                      <p className="text-xs text-gray-400">{t.aboutLocation.hoursSub}</p>
                     </div>
                   </div>
                 </div>

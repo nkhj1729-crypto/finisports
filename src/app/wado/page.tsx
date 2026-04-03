@@ -5,8 +5,10 @@ import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { PRODUCTS, CATEGORIES, STORE_URL } from "@/data/products";
+import { useLang } from "@/i18n";
 
 export default function WadoPage() {
+  const { t } = useLang();
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
@@ -22,15 +24,13 @@ export default function WadoPage() {
         <section className="py-16 md:py-24 bg-white text-center">
           <div className="max-w-4xl mx-auto px-4">
             <p className="text-sm font-semibold text-primary tracking-widest mb-3 uppercase">
-              WADO Brand
+              {t.wadoPage.badge}
             </p>
             <h1 className="text-4xl md:text-5xl font-extrabold mb-6">
-              제품 소개
+              {t.wadoPage.title}
             </h1>
             <p className="text-gray-500 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-              와두(WADO)는 일상 속 건강 관리를 위해 설계된 휘니스포츠의 자체
-              브랜드입니다. 마사지, 스트레칭, 교정, 운동까지 — 목적에 맞는 제품을
-              만나보세요.
+              {t.wadoPage.desc}
             </p>
           </div>
         </section>
@@ -46,7 +46,7 @@ export default function WadoPage() {
                   : "bg-white text-gray-600 border border-gray-200 hover:border-primary/40"
               }`}
             >
-              전체
+              {t.wadoPage.allFilter}
             </button>
             {CATEGORIES.map((cat) => (
               <button
@@ -70,6 +70,8 @@ export default function WadoPage() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {filtered.map((p) => {
                 const isExpanded = expandedId === p.id;
+                const productIndex = PRODUCTS.findIndex((pr) => pr.id === p.id);
+                const tp = t.products[productIndex];
                 return (
                   <div
                     key={p.id}
@@ -78,7 +80,7 @@ export default function WadoPage() {
                     <div className="relative aspect-[4/3] bg-gray-50 overflow-hidden">
                       <Image
                         src={p.image}
-                        alt={p.name}
+                        alt={tp?.name ?? p.name}
                         fill
                         className="object-cover"
                       />
@@ -89,15 +91,15 @@ export default function WadoPage() {
 
                     <div className="p-6">
                       <h3 className="text-lg md:text-xl font-bold mb-2">
-                        {p.name}
+                        {tp?.name ?? p.name}
                       </h3>
                       <p className="text-sm text-gray-500 leading-relaxed mb-4">
-                        {p.desc}
+                        {tp?.desc ?? p.desc}
                       </p>
 
                       {/* Features */}
                       <div className="flex flex-wrap gap-2 mb-4">
-                        {p.features.map((f, i) => (
+                        {(tp?.features ?? p.features).map((f, i) => (
                           <span
                             key={i}
                             className="px-2.5 py-1 text-[11px] font-medium text-gray-600 bg-gray-100 rounded-full"
@@ -114,7 +116,7 @@ export default function WadoPage() {
                         }
                         className="text-sm font-semibold text-primary hover:underline mb-4 flex items-center gap-1"
                       >
-                        {isExpanded ? "접기" : "상세 보기"}
+                        {isExpanded ? t.wadoPage.detailClose : t.wadoPage.detailOpen}
                         <svg
                           className={`w-4 h-4 transition-transform ${
                             isExpanded ? "rotate-180" : ""
@@ -134,7 +136,7 @@ export default function WadoPage() {
 
                       {isExpanded && (
                         <div className="text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-4 mb-4">
-                          {p.detail}
+                          {tp?.detail ?? p.detail}
                         </div>
                       )}
 
@@ -145,7 +147,7 @@ export default function WadoPage() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white font-semibold rounded-full text-sm hover:bg-primary-dark transition-colors"
                       >
-                        스토어에서 구매하기
+                        {t.wadoPage.buyBtn}
                         <svg
                           className="w-4 h-4"
                           fill="none"

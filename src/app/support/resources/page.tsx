@@ -1,5 +1,8 @@
+"use client";
+
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useLang } from "@/i18n";
 
 const RESOURCES = [
   {
@@ -62,6 +65,8 @@ const RESOURCES = [
 ];
 
 export default function ResourcesPage() {
+  const { t } = useLang();
+
   return (
     <>
       <Header />
@@ -70,13 +75,13 @@ export default function ResourcesPage() {
         <section className="py-16 md:py-24 bg-white text-center">
           <div className="max-w-4xl mx-auto px-4">
             <p className="text-sm font-semibold text-primary tracking-widest mb-3 uppercase">
-              Resources
+              {t.resourcesPage.badge}
             </p>
             <h1 className="text-4xl md:text-5xl font-extrabold mb-6">
-              자료실
+              {t.resourcesPage.title}
             </h1>
             <p className="text-gray-500 text-base md:text-lg">
-              제품 카탈로그, 운동 가이드, 인증서류 등을 다운로드하실 수 있습니다.
+              {t.resourcesPage.desc}
             </p>
           </div>
         </section>
@@ -138,11 +143,7 @@ export default function ResourcesPage() {
         <section className="py-12 bg-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
             <p className="text-sm text-gray-400">
-              자료 다운로드 관련 문의는{" "}
-              <a href="mailto:admin@finisports.com" className="text-primary font-semibold hover:underline">
-                admin@finisports.com
-              </a>{" "}
-              으로 연락해주세요.
+              {t.resourcesPage.downloadNote}
             </p>
           </div>
         </section>

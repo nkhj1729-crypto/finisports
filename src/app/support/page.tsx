@@ -3,39 +3,10 @@
 import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-
-const FAQS = [
-  {
-    q: "배송은 얼마나 걸리나요?",
-    a: "주문 확인 후 1~3 영업일 이내 출고됩니다. 출고 후 1~2일 내 수령 가능하며, 지역에 따라 차이가 있을 수 있습니다.",
-  },
-  {
-    q: "배송비는 얼마인가요?",
-    a: "기본 배송비는 3,000원이며, 일정 금액 이상 구매 시 무료 배송됩니다. 도서산간 지역은 추가 배송비가 발생할 수 있습니다.",
-  },
-  {
-    q: "교환/반품은 어떻게 하나요?",
-    a: "수령 후 7일 이내 교환 및 반품이 가능합니다. 단순 변심의 경우 왕복 택배비 6,000원은 고객 부담이며, 제품 하자 시 무료로 교환해드립니다.",
-  },
-  {
-    q: "제품 강도(Lv1, Lv2, Lv3)는 어떻게 다른가요?",
-    a: "Lv1(소프트)은 민감한 부위나 입문자에게, Lv2(미디엄)은 일반적인 사용에, Lv3(하드)는 강한 자극을 원하거나 근육이 많이 뭉친 분께 추천합니다. 처음에는 Lv1부터 시작하시는 것을 권장합니다.",
-  },
-  {
-    q: "바로스파인은 누구나 사용할 수 있나요?",
-    a: "대부분의 성인이 사용할 수 있으나, 척추 수술 이력이 있거나 심한 디스크 증상이 있는 분은 전문의와 상담 후 사용해주세요.",
-  },
-  {
-    q: "대량 구매(B2B)도 가능한가요?",
-    a: "네, 가능합니다. PT 스튜디오, 요가원, 필라테스 센터, 병원 등 대량 구매를 원하시면 고객센터(1899-0063)로 문의해주세요. 별도 견적을 안내해드립니다.",
-  },
-  {
-    q: "해외 배송이 되나요?",
-    a: "현재 해외 배송은 지원하지 않으며, 국내 배송만 가능합니다. 해외 배송 관련 문의는 이메일(admin@finisports.com)로 연락해주세요.",
-  },
-];
+import { useLang } from "@/i18n";
 
 export default function SupportPage() {
+  const { t } = useLang();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
@@ -46,13 +17,13 @@ export default function SupportPage() {
         <section className="py-16 md:py-24 bg-white text-center">
           <div className="max-w-4xl mx-auto px-4">
             <p className="text-sm font-semibold text-primary tracking-widest mb-3 uppercase">
-              Customer Support
+              {t.supportPage.badge}
             </p>
             <h1 className="text-4xl md:text-5xl font-extrabold mb-6">
-              고객센터
+              {t.supportPage.title}
             </h1>
             <p className="text-gray-500 text-base md:text-lg">
-              궁금한 점이 있으시면 아래 FAQ를 확인하시거나, 직접 문의해주세요.
+              {t.supportPage.desc}
             </p>
           </div>
         </section>
@@ -61,11 +32,11 @@ export default function SupportPage() {
         <section className="py-16 md:py-24 bg-gray-50">
           <div className="max-w-3xl mx-auto px-4 sm:px-6">
             <h2 className="text-2xl md:text-3xl font-extrabold text-center mb-12">
-              자주 묻는 질문
+              {t.supportPage.faqTitle}
             </h2>
 
             <div className="space-y-3">
-              {FAQS.map((faq, i) => (
+              {t.supportPage.faqs.map((faq, i) => (
                 <div
                   key={i}
                   className="bg-white rounded-xl border border-gray-100 overflow-hidden"
@@ -111,48 +82,48 @@ export default function SupportPage() {
               {/* Contact Form */}
               <div>
                 <h2 className="text-2xl md:text-3xl font-extrabold mb-8">
-                  문의하기
+                  {t.supportPage.formTitle}
                 </h2>
                 <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-1.5">
-                        이름
+                        {t.supportPage.nameLabel}
                       </label>
                       <input
                         type="text"
-                        placeholder="이름을 입력하세요"
+                        placeholder={t.supportPage.namePlaceholder}
                         className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
                       />
                     </div>
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-1.5">
-                        이메일
+                        {t.supportPage.emailLabel}
                       </label>
                       <input
                         type="email"
-                        placeholder="이메일을 입력하세요"
+                        placeholder={t.supportPage.emailPlaceholder}
                         className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
                       />
                     </div>
                   </div>
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-1.5">
-                      제목
+                      {t.supportPage.subjectLabel}
                     </label>
                     <input
                       type="text"
-                      placeholder="문의 제목을 입력하세요"
+                      placeholder={t.supportPage.subjectPlaceholder}
                       className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-1.5">
-                      문의 내용
+                      {t.supportPage.messageLabel}
                     </label>
                     <textarea
                       rows={6}
-                      placeholder="문의 내용을 상세히 적어주세요"
+                      placeholder={t.supportPage.messagePlaceholder}
                       className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all resize-none"
                     />
                   </div>
@@ -160,7 +131,7 @@ export default function SupportPage() {
                     type="submit"
                     className="w-full sm:w-auto px-8 py-3.5 bg-primary text-white font-bold rounded-full text-sm hover:bg-primary-dark transition-colors shadow-lg shadow-primary/25"
                   >
-                    문의 보내기
+                    {t.supportPage.submitBtn}
                   </button>
                 </form>
               </div>
@@ -168,7 +139,7 @@ export default function SupportPage() {
               {/* Contact Info */}
               <div>
                 <h2 className="text-2xl md:text-3xl font-extrabold mb-8">
-                  연락처 정보
+                  {t.supportPage.contactTitle}
                 </h2>
                 <div className="space-y-6">
                   {[
@@ -179,8 +150,8 @@ export default function SupportPage() {
                         </svg>
                       ),
                       label: "대표전화",
-                      value: "1899-0063",
-                      sub: "평일 09:00 ~ 18:00 (점심 12:00 ~ 13:00)",
+                      value: t.supportPage.contactPhone,
+                      sub: t.supportPage.contactPhoneSub,
                     },
                     {
                       icon: (
@@ -189,8 +160,8 @@ export default function SupportPage() {
                         </svg>
                       ),
                       label: "이메일",
-                      value: "admin@finisports.com",
-                      sub: "24시간 접수, 영업일 기준 1~2일 내 답변",
+                      value: t.supportPage.contactEmail,
+                      sub: t.supportPage.contactEmailSub,
                     },
                     {
                       icon: (
@@ -200,8 +171,8 @@ export default function SupportPage() {
                         </svg>
                       ),
                       label: "주소",
-                      value: "경기도 양주시 남방동 208-1 (외미로 24)",
-                      sub: "주식회사 휘니",
+                      value: t.supportPage.contactAddress,
+                      sub: t.supportPage.contactAddressSub,
                     },
                     {
                       icon: (
@@ -210,8 +181,8 @@ export default function SupportPage() {
                         </svg>
                       ),
                       label: "운영시간",
-                      value: "평일 09:00 ~ 18:00",
-                      sub: "주말 및 공휴일 휴무",
+                      value: t.supportPage.contactHours,
+                      sub: t.supportPage.contactHoursSub,
                     },
                   ].map((item, i) => (
                     <div key={i} className="flex gap-4">
@@ -223,9 +194,11 @@ export default function SupportPage() {
                           {item.label}
                         </p>
                         <p className="font-bold text-base">{item.value}</p>
-                        <p className="text-xs text-gray-400 mt-0.5">
-                          {item.sub}
-                        </p>
+                        {item.sub && (
+                          <p className="text-xs text-gray-400 mt-0.5">
+                            {item.sub}
+                          </p>
+                        )}
                       </div>
                     </div>
                   ))}

@@ -1,43 +1,20 @@
+"use client";
+
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Image from "next/image";
+import { useLang } from "@/i18n";
 
-const CERTS = [
-  {
-    title: "ISO 9001:2015 품질경영시스템",
-    org: "GERMAN CERT",
-    number: "GQ-232424",
-    date: "2023.01.20",
-    scope: "스포츠용품의 제조 및 유통",
-    image: "/images/cert-iso9001.jpg",
-  },
-  {
-    title: "특허증 — 척추 스트레칭용 운동기구",
-    org: "특허청 (KIPO)",
-    number: "제10-2443801호",
-    date: "2022.09.13",
-    scope: "바로스파인 핵심 기술 특허",
-    image: "/images/cert-patent.jpg",
-  },
-  {
-    title: "상표등록증 — WADO",
-    org: "특허청 (KIPO)",
-    number: "제40-1583819호",
-    date: "2020.03.09",
-    scope: "제27류 스포츠용 매트등 4건",
-    image: "/images/cert-trademark-wado.jpg",
-  },
-  {
-    title: "상표등록증 — FINI",
-    org: "특허청 (KIPO)",
-    number: "제40-1583820호",
-    date: "2020.03.09",
-    scope: "제10류 의료용 벨트등 10건",
-    image: "/images/cert-trademark-fini.jpg",
-  },
+const CERT_IMAGES = [
+  "/images/cert-iso9001.jpg",
+  "/images/cert-patent.jpg",
+  "/images/cert-trademark-wado.jpg",
+  "/images/cert-trademark-fini.jpg",
 ];
 
 export default function CertificationsPage() {
+  const { t } = useLang();
+
   return (
     <>
       <Header />
@@ -46,14 +23,13 @@ export default function CertificationsPage() {
         <section className="py-16 md:py-24 bg-white text-center">
           <div className="max-w-4xl mx-auto px-4">
             <p className="text-sm font-semibold text-primary tracking-widest mb-3 uppercase">
-              Certifications & Patents
+              {t.aboutCerts.badge}
             </p>
             <h1 className="text-4xl md:text-5xl font-extrabold mb-6">
-              인증 및 특허
+              {t.aboutCerts.title}
             </h1>
             <p className="text-gray-500 text-base md:text-lg max-w-2xl mx-auto">
-              휘니스포츠는 국제 품질 인증과 특허 기술로
-              제품의 품질과 안전성을 보장합니다.
+              {t.aboutCerts.subtitle}
             </p>
           </div>
         </section>
@@ -62,7 +38,7 @@ export default function CertificationsPage() {
         <section className="py-16 md:py-24 bg-gray-50">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
             <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-              {CERTS.map((cert, i) => (
+              {t.aboutCerts.certs.map((cert, i) => (
                 <div
                   key={i}
                   className="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-lg transition-all"
@@ -71,7 +47,7 @@ export default function CertificationsPage() {
                     {/* Certificate Image */}
                     <div className="relative aspect-[3/4] sm:aspect-auto bg-gray-50">
                       <Image
-                        src={cert.image}
+                        src={CERT_IMAGES[i]}
                         alt={cert.title}
                         fill
                         className="object-contain p-4"
