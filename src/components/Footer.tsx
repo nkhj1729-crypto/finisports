@@ -79,6 +79,12 @@ export default function Footer() {
                 {t.footer.ceo}
               </p>
             </div>
+            <Link
+              href="/admin/login"
+              className="inline-block mt-4 text-xs text-gray-600 hover:text-gray-400 transition-colors"
+            >
+              Admin
+            </Link>
           </div>
         </div>
 

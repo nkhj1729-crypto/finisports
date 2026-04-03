@@ -7,8 +7,17 @@ import Footer from "@/components/Footer";
 import { PRODUCTS, CATEGORIES, STORE_URL } from "@/data/products";
 import { useLang } from "@/i18n";
 
+const CATEGORY_EN: Record<string, string> = {
+  "마사지": "Massage",
+  "폼롤러": "Foam Roller",
+  "교정": "Posture Correction",
+  "매트": "Mat",
+  "세트": "Set",
+  "필라테스": "Pilates",
+};
+
 export default function WadoPage() {
-  const { t } = useLang();
+  const { lang, t } = useLang();
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
@@ -16,22 +25,73 @@ export default function WadoPage() {
     ? PRODUCTS.filter((p) => p.category === activeCategory)
     : PRODUCTS;
 
+  const catLabel = (cat: string) => lang === "en" ? (CATEGORY_EN[cat] || cat) : cat;
+
   return (
     <>
       <Header />
       <main className="pt-20">
-        {/* Hero */}
-        <section className="py-16 md:py-24 bg-white text-center">
-          <div className="max-w-4xl mx-auto px-4">
-            <p className="text-sm font-semibold text-primary tracking-widest mb-3 uppercase">
-              {t.wadoPage.badge}
-            </p>
-            <h1 className="text-4xl md:text-5xl font-extrabold mb-6">
-              {t.wadoPage.title}
+        {/* Hero - Brand Style */}
+        <section className="relative py-24 md:py-36 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-warm to-accent/5" />
+          <div className="absolute top-0 left-0 w-96 h-96 rounded-full bg-primary/10 blur-3xl -translate-y-1/2 -translate-x-1/2" />
+          <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-accent/10 blur-3xl translate-y-1/2 translate-x-1/2" />
+
+          <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
+            <span className="inline-block px-4 py-1.5 text-xs font-bold tracking-widest text-primary bg-primary/10 rounded-full mb-8 uppercase">
+              Premium Performance Line
+            </span>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight mb-6">
+              {lang === "en" ? (
+                <>
+                  For a balanced life
+                  <br />
+                  <span className="text-primary">WADO</span>
+                </>
+              ) : (
+                <>
+                  균형 있는 삶을 위한
+                  <br />
+                  <span className="text-primary">WADO [와도]</span>
+                </>
+              )}
             </h1>
-            <p className="text-gray-500 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-              {t.wadoPage.desc}
+            <p className="text-gray-500 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+              {lang === "en"
+                ? "Beyond simple exercise equipment — introducing WADO, a premium home training lineup that blends seamlessly into your space."
+                : "단순한 운동 기구를 넘어, 당신의 공간과 매끄럽게 어우러지는 프리미엄 홈트레이닝 라인업 WADO를 소개합니다."}
             </p>
+          </div>
+        </section>
+
+        {/* Design Ethics & Material Focus */}
+        <section className="relative py-20 md:py-28 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/3 via-white to-accent/5" />
+          <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6">
+            <div className="grid md:grid-cols-2 gap-6 md:gap-8">
+              <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 md:p-10 border border-gray-100 shadow-sm">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-1.5 h-8 bg-primary rounded-full" />
+                  <h2 className="text-xl md:text-2xl font-black">Design Ethics</h2>
+                </div>
+                <p className="text-gray-500 leading-relaxed">
+                  {lang === "en"
+                    ? "WADO pursues a refined aesthetic that doesn't compromise your interior. With soft curves and natural tones, it blends seamlessly into your everyday space."
+                    : "와도는 인테리어를 해치지 않는 절제된 미학을 추구합니다. 부드러운 곡선과 자연스러운 톤으로 일상의 공간에 자연스럽게 스며듭니다."}
+                </p>
+              </div>
+              <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 md:p-10 border border-gray-100 shadow-sm">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-1.5 h-8 bg-primary rounded-full" />
+                  <h2 className="text-xl md:text-2xl font-black">Material Focus</h2>
+                </div>
+                <p className="text-gray-500 leading-relaxed">
+                  {lang === "en"
+                    ? "Because our products touch your skin directly, we insist on only the safest materials. Made with eco-friendly, non-toxic TPE and high-density foam."
+                    : "피부에 직접 닿는 제품이기에 가장 안전한 소재만을 고집합니다. 환경 호르몬 걱정 없는 무독성 TPE와 고밀도 폼으로 제작됩니다."}
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -58,7 +118,7 @@ export default function WadoPage() {
                     : "bg-white text-gray-600 border border-gray-200 hover:border-primary/40"
                 }`}
               >
-                {cat}
+                {catLabel(cat)}
               </button>
             ))}
           </div>
@@ -85,7 +145,7 @@ export default function WadoPage() {
                         className="object-cover"
                       />
                       <span className="absolute top-4 left-4 px-3 py-1 text-xs font-bold text-primary bg-white/90 rounded-full backdrop-blur-sm">
-                        {p.category}
+                        {catLabel(p.category)}
                       </span>
                     </div>
 

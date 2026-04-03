@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useLang } from "@/i18n";
 
 const STORE_URL = "https://smartstore.naver.com/finisports";
@@ -24,10 +25,15 @@ export default function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          <Link href="/" className="flex items-center gap-2 shrink-0">
-            <span className="text-xl lg:text-2xl font-extrabold tracking-tight text-foreground">
-              휘니스포츠
-            </span>
+          <Link href="/" className="flex items-center shrink-0">
+            <Image
+              src="/images/fini-logo.jpg"
+              alt="FINI Sports"
+              width={120}
+              height={40}
+              className="h-8 lg:h-10 w-auto"
+              priority
+            />
           </Link>
 
           {/* Desktop Nav */}
@@ -101,12 +107,6 @@ export default function Header() {
                 ENG
               </button>
             </div>
-            <Link
-              href="#"
-              className="text-sm font-medium px-4 py-2 rounded-full bg-primary text-white hover:bg-primary-dark transition-colors"
-            >
-              {t.nav.myPage}
-            </Link>
           </div>
 
           {/* Mobile Hamburger */}
@@ -192,13 +192,6 @@ export default function Header() {
                 </Link>
               )
             )}
-            <Link
-              href="#"
-              className="block px-4 py-3 text-sm font-semibold text-primary"
-              onClick={() => setMobileOpen(false)}
-            >
-              {t.nav.myPage}
-            </Link>
           </nav>
         </div>
       )}
